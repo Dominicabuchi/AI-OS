@@ -32,8 +32,7 @@ export class GmailBrowserFallback {
     if (!this.browser.isRunning()) {
 
       await this.browser.start({
-        profile: "gmail",
-        headless: false
+        profile: "gmail"
       });
 
     } else if (

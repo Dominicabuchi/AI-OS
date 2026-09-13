@@ -46,7 +46,8 @@ export class BrowserManager {
   private readonly accounts = new AccountManager();
 
   private profile = "default";
-  private headless = false;
+  private headless =
+    process.env.AI_OS_BROWSER_HEADLESS === "true";
 
   private readonly executablePath =
     chromium.executablePath();

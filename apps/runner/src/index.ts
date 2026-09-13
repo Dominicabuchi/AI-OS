@@ -6,11 +6,15 @@ import { MissionRuntime } from "@ai-os/mission-runtime";
 import { discoverTools } from "@ai-os/tool-runtime";
 
 dotenv.config({
-  path: path.resolve(process.cwd(), "../../.env")
+  path:
+    process.env.AI_OS_ENV_FILE ??
+    path.resolve(
+      process.cwd(),
+      ".env"
+    )
 });
 
 const AGENTS = [
-  "general",
   "browser",
   "research",
   "planning",
@@ -21,10 +25,7 @@ const AGENTS = [
   "copywriting",
   "marketing",
   "seo",
-  // DISABLED FOR PRODUCTION DEPLOYMENT: LandingPage Agent temporarily offline.
-  "sales",
-  "customer-success",
-  "manager"
+  "sales"
 ];
 
 async function main() {
