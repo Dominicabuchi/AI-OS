@@ -1,0 +1,96 @@
+services:
+
+  openclaw:
+    build:
+      context: .
+      dockerfile: Dockerfile.openclaw
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      HOME: /root
+      OPENCLAW_GATEWAY_PORT: 18789
+    volumes:
+      - ./production-data/openclaw:/root/.openclaw
+    expose:
+      - "18789"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "openclaw",
+          "gateway",
+          "health"
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      AI_OS_STATE_DIR: /data/ai-os/state
+      AI_OS_DATA_DIR: /data/ai-os/api
+      AI_OS_REDDIT_DATA_DIR: /data/ai-os/reddit
+      AI_OS_BROWSER_HEADLESS: "true"
+      AI_OS_API_HOST: 0.0.0.0
+      AI_OS_API_PORT: 3001
+      OPENCLAW_BIN: /usr/local/bin/openclaw
+      OPENCLAW_GATEWAY_URL: http://openclaw:18789
+      HOME: /root
+    volumes:
+      - ./production-data/state:/data/ai-os/state
+      - ./production-data/api:/data/ai-os/api
+      - ./production-data/reddit:/data/ai-os/reddit
+      - ./production-data/openclaw:/root/.openclaw
+    shm_size: "1gb"
+    expose:
+      - "3001"
+    depends_on:
+      openclaw:
+        condition: service_healthy
+
+  runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.runner
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      AI_OS_STATE_DIR: /data/ai-os/state
+      AI_OS_DATA_DIR: /data/ai-os/api
+      AI_OS_REDDIT_DATA_DIR: /data/ai-os/reddit
+      AI_OS_BROWSER_HEADLESS: "true"
+      OPENCLAW_BIN: /usr/local/bin/openclaw
+      OPENCLAW_GATEWAY_URL: http://openclaw:18789
+      HOME: /root
+    volumes:
+      - ./production-data/state:/data/ai-os/state
+      - ./production-data/api:/data/ai-os/api
+      - ./production-data/reddit:/data/ai-os/reddit
+      - ./production-data/openclaw:/root/.openclaw
+    shm_size: "1gb"
+    depends_on:
+      openclaw:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  dashboard:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./apps/dashboard:/usr/share/nginx/html:ro
+      - ./deploy/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+

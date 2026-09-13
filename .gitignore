@@ -142,3 +142,7 @@ agents/**/src/**/*.d.ts
 
 # Verified accidental empty file
 packages/reddit-runtime/tsc
+
+# Production deployment runtime state
+production-data/
+.env.production
