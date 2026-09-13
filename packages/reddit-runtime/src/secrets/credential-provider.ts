@@ -2,10 +2,12 @@ import dotenv from "dotenv";
 import path from "path";
 
 dotenv.config({
-  path: path.resolve(
-    process.cwd(),
-    "../../.env"
-  )
+  path:
+    process.env.AI_OS_ENV_FILE ??
+    path.resolve(
+      process.cwd(),
+      ".env"
+    )
 });
 
 export interface AccountCredentials {

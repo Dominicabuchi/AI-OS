@@ -54,7 +54,7 @@ export class BrowserManager {
   private getProfileDirectory(profile: string): string {
 
     const dir = path.resolve(
-      ".ai-os",
+      process.env.AI_OS_STATE_DIR ?? ".ai-os",
       "profiles",
       profile
     );

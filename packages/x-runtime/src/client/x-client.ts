@@ -2,10 +2,12 @@ import dotenv from "dotenv";
 import path from "path";
 
 dotenv.config({
-  path: path.resolve(
-    process.cwd(),
-    "/Users/joseph/AI-OS/.env"
-  ),
+  path:
+    process.env.AI_OS_ENV_FILE ??
+    path.resolve(
+      process.cwd(),
+      ".env"
+    ),
 });
 
 import { OAuthManager } from "../auth";
@@ -18,15 +20,21 @@ void manager.initialize();
 export class XClient {
 
   static get api() {
+
     return manager.api();
+
   }
 
   static get v2() {
+
     return manager.api().v2;
+
   }
 
   static get auth() {
+
     return manager;
+
   }
 
 }

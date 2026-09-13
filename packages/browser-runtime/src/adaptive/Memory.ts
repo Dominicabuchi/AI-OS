@@ -10,7 +10,13 @@ import {
 export class Memory {
 
   private readonly file =
-    path.join(process.cwd(), ".adaptive-memory.json");
+    process.env.AI_OS_ADAPTIVE_MEMORY_FILE ??
+    path.join(
+      path.resolve(
+        process.env.AI_OS_STATE_DIR ?? ".ai-os"
+      ),
+      "adaptive-memory.json"
+    );
 
   private readonly cache =
     new Map<string, LearnedSelector>();

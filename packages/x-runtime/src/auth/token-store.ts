@@ -2,53 +2,67 @@ import fs from "fs";
 import path from "path";
 
 export interface OAuthTokens {
+
   accessToken: string;
+
   refreshToken: string;
+
+}
+
+interface StoredOAuthTokens {
+
+  accessToken?: string;
+
+  refreshToken?: string;
+
 }
 
 export class TokenStore {
 
-  private readonly envPath =
-    path.resolve(
-      process.cwd(),
-      "/Users/joseph/AI-OS/.env"
+  private readonly file =
+    process.env.AI_OS_X_TOKEN_STORE ??
+    path.join(
+      path.resolve(
+        process.env.AI_OS_STATE_DIR ?? ".ai-os"
+      ),
+      "x-oauth.json"
     );
 
   load(): OAuthTokens {
 
-    const text =
-      fs.readFileSync(
-        this.envPath,
-        "utf8"
-      );
+    let stored: StoredOAuthTokens = {};
 
-    const values: Record<string,string> = {};
+    if (fs.existsSync(this.file)) {
 
-    for (const line of text.split("\n")) {
+      try {
 
-      const index = line.indexOf("=");
+        stored =
+          JSON.parse(
+            fs.readFileSync(
+              this.file,
+              "utf8"
+            )
+          );
 
-      if (index === -1) {
-        continue;
+      } catch {
+
+        stored = {};
+
       }
-
-      const key =
-        line.slice(0, index);
-
-      const value =
-        line.slice(index + 1);
-
-      values[key] = value;
 
     }
 
     return {
 
       accessToken:
-        values.X_OAUTH2_ACCESS_TOKEN,
+        stored.accessToken ??
+        process.env.X_OAUTH2_ACCESS_TOKEN ??
+        "",
 
       refreshToken:
-        values.X_OAUTH2_REFRESH_TOKEN,
+        stored.refreshToken ??
+        process.env.X_OAUTH2_REFRESH_TOKEN ??
+        "",
 
     };
 
@@ -56,28 +70,41 @@ export class TokenStore {
 
   save(tokens: OAuthTokens): void {
 
-    let text =
-      fs.readFileSync(
-        this.envPath,
-        "utf8"
-      );
-
-    text =
-      text.replace(
-        /^X_OAUTH2_ACCESS_TOKEN=.*$/m,
-        `X_OAUTH2_ACCESS_TOKEN=${tokens.accessToken}`
-      );
-
-    text =
-      text.replace(
-        /^X_OAUTH2_REFRESH_TOKEN=.*$/m,
-        `X_OAUTH2_REFRESH_TOKEN=${tokens.refreshToken}`
-      );
+    fs.mkdirSync(
+      path.dirname(this.file),
+      {
+        recursive: true
+      }
+    );
 
     fs.writeFileSync(
-      this.envPath,
-      text
+      this.file,
+      JSON.stringify(
+        {
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken
+        },
+        null,
+        2
+      ),
+      {
+        encoding: "utf8",
+        mode: 0o600
+      }
     );
+
+    try {
+
+      fs.chmodSync(
+        this.file,
+        0o600
+      );
+
+    } catch {
+
+      // Best effort on platforms without chmod support.
+
+    }
 
   }
 

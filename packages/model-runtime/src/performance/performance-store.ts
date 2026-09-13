@@ -10,7 +10,10 @@ const STORE_VERSION = 1;
 function storePath(): string {
   return path.resolve(
     process.env.AI_OS_MODEL_PERFORMANCE_STORE ??
-      ".ai-os/model-performance.json",
+      path.join(
+        process.env.AI_OS_STATE_DIR ?? ".ai-os",
+        "model-performance.json",
+      ),
   );
 }
 

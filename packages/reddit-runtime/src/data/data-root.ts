@@ -4,6 +4,7 @@ import path from "path";
 export class DataRoot {
 
   static readonly root =
+    process.env.AI_OS_REDDIT_DATA_DIR ??
     path.resolve(
       __dirname,
       "../../../..",

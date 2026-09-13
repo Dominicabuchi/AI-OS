@@ -10,7 +10,7 @@ import {
 export class AccountStore {
 
   private readonly file = path.resolve(
-    ".ai-os",
+    process.env.AI_OS_STATE_DIR ?? ".ai-os",
     "accounts.json"
   );
 

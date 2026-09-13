@@ -1,30 +1,155 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import { QueueItem } from "./queue-item";
 
 export class QueueStore {
 
-  private readonly queue: QueueItem[] = [];
-
-  add(item: QueueItem) {
-    this.queue.push(item);
-    this.queue.sort(
-      (a, b) => b.priority - a.priority
+  private readonly file =
+    process.env.AI_OS_SALES_QUEUE_STORE ??
+    path.join(
+      path.resolve(
+        process.env.AI_OS_STATE_DIR ?? ".ai-os"
+      ),
+      "sales",
+      "queue.json"
     );
+
+  constructor() {
+
+    this.ensure();
+
+  }
+
+  private ensure(): void {
+
+    fs.mkdirSync(
+      path.dirname(this.file),
+      {
+        recursive: true
+      }
+    );
+
+    if (!fs.existsSync(this.file)) {
+
+      fs.writeFileSync(
+        this.file,
+        "[]\n",
+        "utf8"
+      );
+
+    }
+
+  }
+
+  private load(): QueueItem[] {
+
+    this.ensure();
+
+    try {
+
+      const parsed =
+        JSON.parse(
+          fs.readFileSync(
+            this.file,
+            "utf8"
+          )
+        );
+
+      return Array.isArray(parsed)
+        ? parsed as QueueItem[]
+        : [];
+
+    } catch {
+
+      return [];
+
+    }
+
+  }
+
+  private persist(
+    queue: QueueItem[]
+  ): void {
+
+    this.ensure();
+
+    fs.writeFileSync(
+      this.file,
+      JSON.stringify(
+        queue,
+        null,
+        2
+      ) + "\n",
+      "utf8"
+    );
+
+  }
+
+  add(
+    item: QueueItem
+  ) {
+
+    const queue =
+      this.load();
+
+    const existing =
+      queue.findIndex(
+        candidate =>
+          candidate.id === item.id
+      );
+
+    if (existing >= 0) {
+
+      queue[existing] =
+        item;
+
+    } else {
+
+      queue.push(item);
+
+    }
+
+    queue.sort(
+      (a, b) =>
+        b.priority -
+        a.priority
+    );
+
+    this.persist(queue);
+
   }
 
   next() {
-    return this.queue.shift();
+
+    const queue =
+      this.load();
+
+    const item =
+      queue.shift();
+
+    this.persist(queue);
+
+    return item;
+
   }
 
   peek() {
-    return this.queue[0];
+
+    return this.load()[0];
+
   }
 
   all() {
-    return [...this.queue];
+
+    return this.load();
+
   }
 
   size() {
-    return this.queue.length;
+
+    return this.load().length;
+
   }
 
 }
