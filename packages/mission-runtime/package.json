@@ -1,0 +1,14 @@
+{
+  "name": "@ai-os/mission-runtime",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@ai-os/shared": "*",
+    "@ai-os/execution-runtime": "*",
+    "@ai-os/scheduler-runtime": "*"
+  }
+}

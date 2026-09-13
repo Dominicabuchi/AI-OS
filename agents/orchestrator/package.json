@@ -1,0 +1,25 @@
+{
+  "name": "@ai-os/orchestrator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@ai-os/agent-runtime": "file:../../packages/agent-runtime",
+    "@ai-os/browser-runtime": "file:../../packages/browser-runtime",
+    "@ai-os/memory-runtime": "file:../../packages/memory-runtime",
+    "@ai-os/model-runtime": "file:../../packages/model-runtime",
+    "@ai-os/shared": "file:../../packages/shared",
+    "@ai-os/task-runtime": "file:../../packages/task-runtime",
+    "@ai-os/tool-runtime": "file:../../packages/tool-runtime"
+  }
+}

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI-OS Mission Control</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">
+      AI<span>-OS</span>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">SYSTEM</div>
+
+      <button class="nav active">
+        <span>◫</span>
+        Overview
+      </button>
+
+      <button class="nav">
+        <span>◉</span>
+        Agents
+      </button>
+
+      <button class="nav">
+        <span>▤</span>
+        Missions
+      </button>
+
+      <button class="nav">
+        <span>⌁</span>
+        Activity
+      </button>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">OPERATIONS</div>
+
+      <button class="nav">
+        <span>⚠</span>
+        Failures
+      </button>
+
+      <button class="nav">
+        <span>↗</span>
+        Sales
+      </button>
+
+      <button class="nav">
+        <span>◎</span>
+        Audit
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="system-pill">
+        <span id="sidebarDot" class="health-dot"></span>
+        <span id="sidebarStatus">Connecting</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="header">
+      <div>
+        <h1>Mission Control</h1>
+        <p>
+          Autonomous agent execution and observability
+        </p>
+      </div>
+
+      <div id="connection" class="connection">
+        <span class="health-dot"></span>
+        <span id="connectionText">Connecting…</span>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+
+      <article class="kpi">
+        <span class="kpi-label">AGENTS ONLINE</span>
+        <strong id="agentsKpi">—</strong>
+        <small>registered agents</small>
+      </article>
+
+      <article class="kpi">
+        <span class="kpi-label">RUNNING</span>
+        <strong id="runningKpi">—</strong>
+        <small>active missions</small>
+      </article>
+
+      <article class="kpi">
+        <span class="kpi-label">COMPLETED</span>
+        <strong id="completedKpi">—</strong>
+        <small>successful missions</small>
+      </article>
+
+      <article class="kpi">
+        <span class="kpi-label">FAILURES</span>
+        <strong id="failedKpi">—</strong>
+        <small>failed missions</small>
+      </article>
+
+      <article class="kpi">
+        <span class="kpi-label">SUCCESS RATE</span>
+        <strong id="successKpi">—</strong>
+        <small>completed / finished</small>
+      </article>
+
+    </section>
+
+    <section class="panel mission-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Launch Mission</h2>
+          <p>Send work directly to a production agent.</p>
+        </div>
+      </div>
+
+      <div class="mission-form">
+        <select id="agentSelect">
+          <option value="">Loading agents…</option>
+        </select>
+
+        <textarea
+          id="missionGoal"
+          placeholder="Describe exactly what AI-OS should accomplish..."
+        ></textarea>
+
+        <button id="launchButton" class="primary">
+          Run Mission
+        </button>
+      </div>
+
+      <div id="missionStatus" class="mission-status"></div>
+    </section>
+
+    <div class="content-grid">
+
+      <div class="left-column">
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Agents</h2>
+              <p id="agentMeta">Loading...</p>
+            </div>
+
+            <span class="live-badge">
+              LIVE
+            </span>
+          </div>
+
+          <div id="agentGrid" class="agent-grid">
+            <div class="empty">
+              Loading agents…
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Recent Missions</h2>
+              <p id="jobMeta">0 missions</p>
+            </div>
+          </div>
+
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>MISSION</th>
+                  <th>AGENT</th>
+                  <th>STATUS</th>
+                  <th>TIME</th>
+                </tr>
+              </thead>
+
+              <tbody id="jobTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="right-column">
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Live Runtime</h2>
+              <p id="eventMeta">0 events</p>
+            </div>
+
+            <span id="liveIndicator" class="live-badge">
+              CONNECTING
+            </span>
+          </div>
+
+          <div id="eventStream" class="stream">
+            <div class="empty">
+              Waiting for runtime activity…
+            </div>
+          </div>
+        </section>
+
+        <section class="panel failure-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Failures & Recovery</h2>
+              <p id="failureMeta">0 recorded</p>
+            </div>
+          </div>
+
+          <div id="failureStream" class="stream">
+            <div class="empty">
+              No failures recorded.
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>

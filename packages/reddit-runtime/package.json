@@ -1,0 +1,24 @@
+{
+  "name": "@ai-os/reddit-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ai-os/browser-runtime": "*",
+    "@ai-os/mcp-host": "*",
+    "dotenv": "^17.4.2",
+    "playwright": "^1.43.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2"
+  },
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

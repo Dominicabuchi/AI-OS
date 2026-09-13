@@ -1,0 +1,144 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Local runtime / browser state
+browser-profile/
+.openclaw/
+.ai-os/
+
+# Backups / temporary snapshots
+*-backup/
+*-backup-*/
+.agent-resolution-backup-*/
+.composio-wiring-backup-*/
+.internal-tool-wiring-backup-*/
+.openclaw-backup/
+.openclaw-capability-wiring-backup-*/
+.openclaw-mcp-bridge-backup-*/
+.openclaw-native-execution-backup-*/
+.openclaw-tool-wiring-backup-*/
+.phase-a-backup-*/
+
+# Generated audits / archives
+*.zip
+runtime-audit.zip
+
+# Build output
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Temporary files
+tmp/
+temp/
+
+# Local AI-OS runtime state
+.ai-os/
+
+# OpenClaw local inventories
+.openclaw-runtime-inventory/
+
+# Generated capability/audit reports
+ai-os-agent-capability-audit.json
+ai-os-definitive-agent-capability-spec.json
+ai-os-definitive-agent-capability-spec.txt
+aios-files.txt
+composio-agent-capability-map.json
+final-agent-capability-audit.json
+
+# Local research/audit artifacts
+reddit-everything-final.txt
+reddit-real-functional-audit.txt
+reddit-runtime-full-audit.txt
+audit/
+
+# Local/browser/social artifacts
+linkedin-messaging.html
+reddit-data/
+stealth_playwright.py
+
+# ============================================================
+# DEPLOYMENT SAFETY — NEVER COMMIT LOCAL RUNTIME/AUTH STATE
+# ============================================================
+
+# Persistent AI-OS runtime state
+.ai-os-data/
+**/.ai-os-data/
+
+# AI-OS browser/session state at any workspace depth
+**/.ai-os/
+**/browser-profile/
+**/browser-data/
+**/user-data/
+
+# Social/browser persistent state
+**/reddit-data/
+**/*storage-state*
+**/*cookies*/
+**/*sessions*/
+
+# Credentials / key material
+*.pem
+*.key
+
+# Generated source-adjacent compiler artifacts
+packages/**/src/**/*.js
+packages/**/src/**/*.js.map
+packages/**/src/**/*.d.ts
+apps/**/src/**/*.js
+apps/**/src/**/*.js.map
+apps/**/src/**/*.d.ts
+
+# Local dashboard backup
+apps/dashboard/index.html.backup
+
+# Generated compiler artifacts inside agent source trees
+agents/**/src/**/*.js
+agents/**/src/**/*.js.map
+agents/**/src/**/*.d.ts
+
+# Historical source snapshots / one-off backups
+**/*.before-*
+**/*.phase-a-backup
+**/*.backup
+
+# Verified non-runtime editor/build/history artifacts
+*.swp
+*.swo
+**/*.phase*-backup
+**/*.bak-*
+**/*.pre-*
+
+# Generated compiler artifacts inside example folders
+**/examples/**/*.js
+**/examples/**/*.js.map
+**/examples/**/*.d.ts
+
+# Verified obsolete backup files
+*.bak
+*.broken.bak
+
+# Verified accidental empty file
+packages/reddit-runtime/tsc

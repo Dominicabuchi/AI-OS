@@ -1,0 +1,14 @@
+{
+  "name": "@ai-os/memory-runtime",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@ai-os/shared": "file:../shared"
+  }
+}

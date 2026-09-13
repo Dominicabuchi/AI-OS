@@ -1,0 +1,14 @@
+{
+  "name": "@ai-os/communication-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc"
+  },
+  "dependencies": {
+    "@ai-os/browser-runtime": "*",
+    "@ai-os/x-runtime": "*"
+  }
+}

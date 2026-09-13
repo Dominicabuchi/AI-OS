@@ -1,0 +1,196 @@
+
+============================================================
+        AI-OS REDDIT RUNTIME — FULL CAPABILITY AUDIT
+============================================================
+
+Root: /Users/joseph/AI-OS/packages/reddit-runtime
+Runtime: /Users/joseph/AI-OS/packages/reddit-runtime/packages/reddit-runtime
+Started: Sun  9 Aug 2026 14:33:56 EDT
+
+============================================================
+1. PACKAGE / BUILD HEALTH
+============================================================
+  ❌ FAIL  reddit-runtime package missing
+  ❌ FAIL  reddit-runtime src missing
+
+Package:
+
+Source modules:
+find: /Users/joseph/AI-OS/packages/reddit-runtime/packages/reddit-runtime/src: No such file or directory
+
+------------------------------------------------------------
+Root TypeScript check
+------------------------------------------------------------
+npm error Lifecycle script `typecheck` failed with error:
+npm error workspace @ai-os/reddit-runtime@1.0.0
+npm error location /Users/joseph/AI-OS/packages/reddit-runtime
+npm error Missing script: "typecheck"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run --workspace=@ai-os/reddit-runtime@1.0.0
+  ❌ FAIL  Root TypeScript typecheck
+
+------------------------------------------------------------
+Reddit Runtime build
+------------------------------------------------------------
+
+> @ai-os/reddit-runtime@1.0.0 build
+> tsc
+
+  ✅ PASS  Reddit Runtime build
+
+============================================================
+2. RUNTIME MODULE INVENTORY
+============================================================
+  ⚠️  CHECK Module missing: auth
+  ⚠️  CHECK Module missing: session
+  ⚠️  CHECK Module missing: navigation
+  ⚠️  CHECK Module missing: browser
+  ⚠️  CHECK Module missing: posts
+  ⚠️  CHECK Module missing: comments
+  ⚠️  CHECK Module missing: search
+  ⚠️  CHECK Module missing: users
+  ⚠️  CHECK Module missing: subreddits
+  ⚠️  CHECK Module missing: feed
+  ⚠️  CHECK Module missing: messages
+  ⚠️  CHECK Module missing: notifications
+  ⚠️  CHECK Module missing: queue
+  ⚠️  CHECK Module missing: scheduler
+  ⚠️  CHECK Module missing: analytics
+  ⚠️  CHECK Module missing: accounts
+  ⚠️  CHECK Module missing: client
+  ⚠️  CHECK Module missing: transport
+  ⚠️  CHECK Module missing: data
+  ⚠️  CHECK Module missing: runtime
+
+============================================================
+3. IMPLEMENTATION / PLACEHOLDER AUDIT
+============================================================
+
+Potential TODOs:
+
+Empty-return implementations:
+
+This section is diagnostic only — it does NOT automatically classify code as broken.
+
+============================================================
+4. EXISTING REDDIT TEST SUITE
+============================================================
+  ⚠️  CHECK No tests directory
+
+------------------------------------------------------------
+Static / non-destructive tests
+------------------------------------------------------------
+  ⚠️  CHECK Test not present: test-auth.ts
+  ⚠️  CHECK Test not present: test-me.ts
+  ⚠️  CHECK Test not present: test-user.ts
+  ⚠️  CHECK Test not present: test-search.ts
+  ⚠️  CHECK Test not present: test-subreddits.ts
+  ⚠️  CHECK Test not present: test-bootstrap.ts
+  ⚠️  CHECK Test not present: test-cookies.ts
+  ⚠️  CHECK Test not present: test-session-monitor.ts
+  ⚠️  CHECK Test not present: test-session-recovery.ts
+  ⚠️  CHECK Test not present: runtime-verification.ts
+
+============================================================
+5. LIVE WRITE CAPABILITY TESTS
+============================================================
+
+These tests are only executed if the corresponding files exist.
+They may create content on Reddit.
+  ⚠️  CHECK Live test missing: test-post-live.ts
+  ⚠️  CHECK Live test missing: test-link-post-live.ts
+
+============================================================
+6. REDDIT CAPABILITY SURFACE
+============================================================
+
+Exported source files:
+find: /Users/joseph/AI-OS/packages/reddit-runtime/packages/reddit-runtime/src: No such file or directory
+
+Detected public classes/functions:
+
+============================================================
+7. MCP SERVER CAPABILITY DISCOVERY
+============================================================
+
+Searching repository for Reddit MCP implementation...
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/CommentService.ts:19:      "get_post_comments",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/CommentService.ts:39:      "get_more_comments",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/CommentService.ts:61:      "reply_to_post",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/CommentService.ts:85:      "edit_comment",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/CommentService.ts:107:      "delete_comment",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/PostService.ts:35:      "create_post",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/PostService.ts:53:      "edit_post",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/PostService.ts:75:      "delete_post",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/UserService.ts:19:      "get_user_info",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/UserService.ts:41:      "get_user_posts",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/UserService.ts:65:      "get_user_comments",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SearchService.ts:31:      "search_reddit",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:23:      "browse_subreddit",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:47:      "get_subreddit_info",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:67:      "get_subreddit_rules",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:87:      "get_post_flairs",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:109:      "get_top_posts",
+/Users/joseph/AI-OS/packages/reddit-runtime/src/mcp/services/SubredditService.ts:127:      "get_trending_subreddits",
+
+============================================================
+8. AUTH / SESSION DATA
+============================================================
+  ⚠️  CHECK Reddit recruiter session cookie file missing
+  ⚠️  CHECK REDDIT_USERNAME is NOT configured
+  ⚠️  CHECK REDDIT_PASSWORD is NOT configured
+
+============================================================
+9. RUNTIME CAPABILITY CHECKLIST
+============================================================
+  [ ] Authentication / session
+  [ ] Navigation
+  [ ] Browser control
+  [ ] Home/feed
+  [ ] Subreddit browsing
+  [ ] Subreddit search
+  [ ] Subreddit information
+  [ ] Subreddit rules
+  [ ] Subreddit flairs
+  [ ] Join/leave subreddit
+  [ ] Post creation
+  [ ] Link posting
+  [ ] Post retrieval
+  [ ] Post editing
+  [ ] Post deletion
+  [ ] Comment retrieval
+  [ ] Comment expansion
+  [ ] Comment reply
+  [ ] Comment editing
+  [ ] Comment deletion
+  [ ] User search
+  [ ] User profile
+  [ ] User posts
+  [ ] User comments
+  [ ] Reddit search
+  [ ] Messaging
+  [ ] Notifications
+  [ ] Queue
+  [ ] Scheduler
+  [ ] Analytics
+  [ ] MCP integration
+  [ ] Agent/runtime integration
+
+============================================================
+10. FINAL MACHINE-READABLE SUMMARY
+============================================================
+
+PASS=1
+FAIL=3
+WARN=36
+
+IMPORTANT:
+PASS = an executed test succeeded.
+FAIL = an executed test failed.
+CHECK = capability exists or needs manual/live verification.
+A source file existing does NOT count as functional.
+
+============================================================
+                    AUDIT COMPLETE
+============================================================

@@ -1,0 +1,20 @@
+{
+  "name": "@ai-os/execution-runtime",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@ai-os/agent-runtime": "file:../agent-runtime",
+    "@ai-os/model-runtime": "file:../model-runtime",
+    "@ai-os/tool-runtime": "file:../tool-runtime",
+    "@ai-os/memory-runtime": "file:../memory-runtime",
+    "@ai-os/task-runtime": "file:../task-runtime",
+    "@ai-os/intelligence-runtime": "file:../intelligence-runtime",
+    "@ai-os/shared": "file:../shared"
+  }
+}

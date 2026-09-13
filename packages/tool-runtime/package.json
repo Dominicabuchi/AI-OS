@@ -1,0 +1,22 @@
+{
+  "name": "@ai-os/tool-runtime",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@ai-os/shared": "file:../shared",
+    "@ai-os/browser-runtime": "file:../browser-runtime",
+    "@ai-os/memory-runtime": "file:../memory-runtime",
+    "@ai-os/task-runtime": "file:../task-runtime",
+    "@ai-os/communication-runtime": "file:../communication-runtime",
+    "@ai-os/x-runtime": "file:../x-runtime",
+    "@ai-os/linkedin-runtime": "file:../linkedin-runtime",
+    "@ai-os/reddit-runtime": "file:../reddit-runtime",
+    "@ai-os/openclaw-runtime": "file:../openclaw-runtime"
+  }
+}

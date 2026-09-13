@@ -1,0 +1,14 @@
+{
+  "name": "@ai-os/linkedin-runtime",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ai-os/browser-runtime": "*",
+    "@ai-os/communication-runtime": "*"
+  }
+}
