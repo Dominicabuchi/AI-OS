@@ -13,7 +13,7 @@ export class MemoryAgent extends BaseAgent {
     "Runtime implementation of the Memory Agent.";
 
   readonly model =
-    "qwen/qwen3-235b-a22b";
+    "qwen/qwen3.8-max-0902";
 
   readonly systemPrompt =
     memoryAgentPrompt + composioCapabilityContext("memory");  readonly agentDependencies = [];

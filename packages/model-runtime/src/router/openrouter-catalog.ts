@@ -51,7 +51,7 @@ const CERTIFIED_BASELINE: Record<
   },
 
   deepseek: {
-    id: "deepseek/deepseek-v4-pro-0813",
+    id: "deepseek/deepseek-v4.1-flash",
     family: "deepseek",
     contextWindow: 1_048_576,
     capabilities: {

@@ -72,7 +72,7 @@ let MODELS: ModelCandidate[] = [
   },
 
   {
-    id: "deepseek/deepseek-v4-pro-0813",
+    id: "deepseek/deepseek-v4.1-flash",
     family: "deepseek",
     contextWindow: 1_048_576,
     capabilities: {
@@ -323,53 +323,53 @@ const SPECIALISTS: Record<
   coding: [
     "moonshotai/kimi-k3",
     "qwen/qwen3.8-max-0902",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   research: [
     "qwen/qwen3.8-max-0902",
     "moonshotai/kimi-k3",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   planning: [
     "qwen/qwen3.8-max-0902",
     "moonshotai/kimi-k3",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   writing: [
     "moonshotai/kimi-k3",
     "qwen/qwen3.8-max-0902",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   toolUse: [
     "moonshotai/kimi-k3",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
     "qwen/qwen3.8-max-0902",
   ],
 
   reasoning: [
     "qwen/qwen3.8-max-0902",
     "moonshotai/kimi-k3",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   multimodal: [
     "moonshotai/kimi-k3",
     "qwen/qwen3.8-max-0902",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   longContext: [
     "moonshotai/kimi-k3",
     "qwen/qwen3.8-max-0902",
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
   ],
 
   speed: [
-    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
     "moonshotai/kimi-k3",
     "qwen/qwen3.8-max-0902",
   ],

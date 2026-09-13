@@ -13,7 +13,7 @@ export class ResearchAgent extends BaseAgent {
     "World-class autonomous research, intelligence, validation and evidence specialist.";
 
   readonly model =
-    "qwen/qwen3-235b-a22b";
+    "qwen/qwen3.8-max-0902";
 
   readonly systemPrompt =
     researchAgentPrompt + composioCapabilityContext("research");  readonly agentDependencies = [];

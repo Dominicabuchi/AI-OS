@@ -12,7 +12,7 @@ export class BrowserAgent extends BaseAgent {
     "Autonomous browser intelligence, navigation and web execution specialist.";
 
   readonly model =
-    "qwen/qwen3-235b-a22b";
+    "qwen/qwen3.8-max-0902";
 
   readonly systemPrompt = `
 You are AI-OS Browser Agent.

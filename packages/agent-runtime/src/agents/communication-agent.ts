@@ -15,7 +15,7 @@ export class CommunicationAgent extends BaseAgent {
     "World-class autonomous communication, coordination, stakeholder communication and relationship management specialist.";
 
   readonly model =
-    "qwen/qwen3-235b-a22b";
+    "qwen/qwen3.8-max-0902";
 
   readonly systemPrompt =
     communicationAgentPrompt + composioCapabilityContext("communication");

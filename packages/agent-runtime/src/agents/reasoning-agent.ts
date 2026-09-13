@@ -15,7 +15,7 @@ readonly name = "Reasoning Agent";
     "Runtime implementation of the Reasoning Agent.";
 
   readonly model =
-    "qwen/qwen3-235b-a22b";
+    "qwen/qwen3.8-max-0902";
 
   readonly systemPrompt =
     reasoningAgentPrompt + composioCapabilityContext("reasoning");  readonly tools = [
