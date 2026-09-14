@@ -1,11 +1,15 @@
 #!/bin/bash
 set -u
 
-REPO="$HOME/AI-OS"
+REPO="/Users/joseph/AI-OS"
 LOG_DIR="$REPO/production-data/logs"
 mkdir -p "$LOG_DIR"
 cd "$REPO" || exit 1
 
+export HOME="/Users/joseph"
+export USER="joseph"
+export LOGNAME="joseph"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export NODE_ENV=production
 export AI_OS_ENV_FILE="$REPO/.env.production"
 export AI_OS_DATA_DIR="$REPO/production-data/api"
@@ -30,7 +34,10 @@ start_runner() {
 start_tunnel() {
   if ! pgrep -f 'aios-dominic-2026:80:127.0.0.1:3001 serveo.net' >/dev/null 2>&1; then
     nice -n 15 /usr/bin/ssh -T \
+      -i /Users/joseph/.ssh/id_ed25519 \
+      -o BatchMode=yes \
       -o StrictHostKeyChecking=no \
+      -o UserKnownHostsFile=/Users/joseph/.ssh/known_hosts \
       -o ServerAliveInterval=30 \
       -o ServerAliveCountMax=3 \
       -o ExitOnForwardFailure=yes \
