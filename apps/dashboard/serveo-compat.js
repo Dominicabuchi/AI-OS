@@ -1,14 +1,6 @@
 (() => {
   "use strict";
 
-  const nativeFetch = window.fetch.bind(window);
-
-  window.fetch = (input, init = {}) => {
-    const headers = new Headers(init.headers || {});
-    headers.set("serveo-skip-browser-warning", "true");
-    return nativeFetch(input, { ...init, headers });
-  };
-
   class PollingWebSocket {
     static CONNECTING = 0;
     static OPEN = 1;
