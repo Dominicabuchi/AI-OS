@@ -32,17 +32,8 @@ start_runner() {
 }
 
 start_tunnel() {
-  if ! pgrep -f 'aios-dominic-2026:80:127.0.0.1:3001 serveo.net' >/dev/null 2>&1; then
-    nice -n 15 /usr/bin/ssh -T \
-      -i /Users/joseph/.ssh/id_ed25519 \
-      -o BatchMode=yes \
-      -o StrictHostKeyChecking=no \
-      -o UserKnownHostsFile=/Users/joseph/.ssh/known_hosts \
-      -o ServerAliveInterval=30 \
-      -o ServerAliveCountMax=3 \
-      -o ExitOnForwardFailure=yes \
-      -R aios-dominic-2026:80:127.0.0.1:3001 \
-      serveo.net >> "$LOG_DIR/serveo.supervisor.log" 2>> "$LOG_DIR/serveo.supervisor.error.log" &
+  if ! pgrep -f '/usr/local/bin/ngrok http.*3001' >/dev/null 2>&1; then
+    nice -n 15 /usr/local/bin/ngrok http --url simply-theater-cedar.ngrok-free.dev 3001 --log=stdout >> "$LOG_DIR/ngrok.supervisor.log" 2>> "$LOG_DIR/ngrok.supervisor.error.log" &
   fi
 }
 
